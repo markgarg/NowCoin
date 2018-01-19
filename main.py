@@ -14,6 +14,7 @@ def create_genesis_block(initial_state):
     genesisHash = hashMe( genesisBlockContents )
     return {u'hash':genesisHash,u'contents':genesisBlockContents} # Genesis Block
 
+
 def makeBlock(txns,chain):
     parentBlock = chain[-1]
     parentHash  = parentBlock[u'hash']
@@ -26,11 +27,21 @@ def makeBlock(txns,chain):
     
     return block
 
+
+def add_transaction_to_block_chain(new_txn):
+    """Validate incoming transaction and add it to a block chain."""
+    if isValidTxn(new_txn, state):
+        new_block = makeBlock(new_txn, chain)
+        chain.append(new_block)
+        return True
+    else:
+        return False
+
 def main():
     txnBuffer = [makeTransaction() for i in range(10)]
     blockSizeLimit = 5
 
-    state = {u'Alice':5,u'Bob':5}
+    state = {u'Alice': 40, u'Sky': 600}
     genesis_block = create_genesis_block(state)
 
     # Initialising chain
