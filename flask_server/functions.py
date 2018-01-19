@@ -3,6 +3,11 @@ random.seed(0)
 import hashlib, json, sys
 import pickle
 
+def create_genesis_block(initial_state): 
+    genesisBlockTxns = [initial_state]
+    genesisBlockContents = {u'blockNumber':0,u'parentHash':None,u'txnCount':1,u'txns':genesisBlockTxns}
+    genesisHash = hashMe( genesisBlockContents )
+    return {u'hash':genesisHash,u'contents':genesisBlockContents} # Genesis Block
 
 
 def makeBlock(txns,chain):
