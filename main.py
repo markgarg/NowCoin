@@ -65,8 +65,52 @@ def main():
     print("State {} : \n".format(state))
 
     print("Is it possible for {u'Alice': -3, u'Bob': 3}:  " , isValidTxn({u'Alice': -3, u'Bob': 3},state))  # Basic transaction- this works great!
-    print("Is it possible for {u'Alice': 3, u'Bob': -3}:  " , isValidTxn({u'Alice': 3, u'Bob': -3},state))  # Basic transaction- this works great!
+    print("Is it possible for {u'Alice': -3, u'Bob': 3}:  " , isValidTxn({u'Alice': -3, u'Bob': 3},state))  # Basic transaction- this works great!
+ 
+
+
+    print("Is it possible for {u'Alice': -3, u'Bob': 1, u'Alan': 2}:  " , isValidTxn({u'Alice': -3, u'Bob': 1, u'Alan': 2},state))  # Basic transaction- this works great!
 
 
 if __name__ == '__main__':
     main()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
