@@ -3,6 +3,21 @@ random.seed(0)
 import hashlib, json, sys
 import pickle
 
+
+
+def makeBlock(txns,chain):
+    parentBlock = chain[-1]
+    parentHash  = parentBlock[u'hash']
+    blockNumber = parentBlock[u'contents'][u'blockNumber'] + 1
+    txnCount    = len(txns)
+    blockContents = {u'blockNumber':blockNumber,u'parentHash':parentHash,
+                     u'txnCount':len(txns),'txns':txns}
+    blockHash = hashMe( blockContents )
+    block = {u'hash':blockHash,u'contents':blockContents}
+    
+    return block
+
+
 def hashMe(msg=""):
     # For convenience, this is a helper function that wraps our hashing algorithm
     if type(msg)!=str:
@@ -14,16 +29,12 @@ def hashMe(msg=""):
         return hashlib.sha256(str(msg).encode('utf-8')).hexdigest()
 
 def add_transaction_to_block_chain(new_txn, state, chain):
-    """Validate incoming transaction and add it to a block chain."""
-    if isValidTxn(new_txn, state):
-        state = updateState(new_txn, state)
-        new_block = makeBlock([new_txn], chain)
-        chain.append(new_block)
-        save_data(chain, "chain.pkl")
-        save_data(state, "state.pkl")
-        return True
-    else:
-        return False
+    """Add it to a block chain."""
+    state = updateState(new_txn, state)
+    new_block = makeBlock([new_txn], chain)
+    chain.append(new_block)
+
+    return state, chain
 
 def makeTransaction(maxValue=40):
     # This will create valid transactions in the range of (1,maxValue)

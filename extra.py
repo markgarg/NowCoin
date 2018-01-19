@@ -44,16 +44,12 @@ def makeBlock(txns,chain):
 #         return False
 
 def add_transaction_to_block_chain(new_txn, state, chain):
-    """Validate incoming transaction and add it to a block chain."""
-    if isValidTxn(new_txn, state):
-        state = updateState(new_txn, state)
-        new_block = makeBlock([new_txn], chain)
-        chain.append(new_block)
-        save_data(chain, "chain.pkl")
-        save_data(state, "state.pkl")
-        return True
-    else:
-        return False
+    """Add it to a block chain."""
+    state = updateState(new_txn, state)
+    new_block = makeBlock([new_txn], chain)
+    chain.append(new_block)
+
+    return state, chain
 
 
 def save_data(data, file_name):
