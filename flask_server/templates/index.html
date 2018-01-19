@@ -54,14 +54,13 @@
 
     <!-- Page Content -->
     <div class="container">
-      <form method="post">
         <div class="row">
 
           <div class="col-xs-6 col-sm-4">
             <center>
             <img src="static/got.png" width="270px" height="350px">
             <hr>
-              <button type="submit" name="cost" class="btn btn-light" value={{8}}>Buy - 8 NowCoins</button>
+              <button type="submit" name="cost" id="buy_coins_8" class="btn btn-light" value={{8}}>Buy - 8 NowCoins</button>
               <button type="submit" name="cost" class="btn btn-light" value={{10}}>Buy without Ads - 10 NowCoins</button>
             </center>
           </div>
@@ -87,11 +86,23 @@
 
 
         </div>
-      </form>
     </div>
 
     <!-- Bootstrap core JavaScript -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script>
+    $('#buy_coins_8').click(function(){
+        $.ajax({
+            url:'/api/newTransaction',
+            type:"POST",
+            data:{ name: "Alice", cost: "8"},
+            contentType:"application/json; charset=utf-8",
+            dataType:"json",
+            success: function(){
+            }
+        });
+    })
+    </script>
 
   </body>
 

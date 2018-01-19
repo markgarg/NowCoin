@@ -65,7 +65,7 @@ def add_new_transaction():
     if not request.json:
         abort(400)
     data = request.get_json()
-
+    print("{}".json.loads(request.data))
     state = read_data("resources/state.pkl")
     new_txn = create_transaction(data['name'], data['cost'])
 
