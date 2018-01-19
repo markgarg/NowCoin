@@ -34,7 +34,7 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
       <div class="container">
-        <a class="navbar-brand" href="#">Sky Coin</a>
+        <a class="navbar-brand" href="/">Sky Coin</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -58,9 +58,9 @@
 
         <div class="col-xs-6 col-sm-4">
           <center>
-          <img src="static/simpson1.png" width="270px" height="350px">
+          <img src="static/simpson2.png" width="270px" height="350px">
           <hr>
-            <p>You have 30 NowCoins</p>
+            <p id="alice">Alice: Cannot get values</p>
             <button type="button" class="btn btn-light">Buy more NowCoins</button>
             <button type="button" class="btn btn-light">Give away NowCoins</button>
           </center>
@@ -69,9 +69,9 @@
 
         <div class="col-xs-6 col-sm-4">
           <center>
-          <img src="static/simpson2.png" width="270px" height="350px">
+          <img src="static/simpson1.png" width="270px" height="350px">
           <hr>
-            <p>You have 67 NowCoins</p>
+            <p id="bob"></p>
             <button type="button" class="btn btn-light">Buy more NowCoins</button>
             <button type="button" class="btn btn-light">Give away NowCoins</button>
           </center>
@@ -82,7 +82,7 @@
           <center>
           <img src="static/simpson3.jpeg" width="270px" height="350px">
           <hr>
-            <p>You have 0 NowCoins</p>
+            <p id="charlie"></p>
             <button type="button" class="btn btn-light">Buy more NowCoins</button>
             <button type="button" class="btn btn-light">Give away NowCoins</button>
           </center>
@@ -93,8 +93,39 @@
     </div>
 
     <!-- Bootstrap core JavaScript -->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+    <script>
+    $(document).ready(function(){
+           $.ajax({
+            url : "http://127.0.0.1:5000/api/state/Alice",
+            crossDomain: true,
+            type: 'GET',
+            dataType: 'json'
+           })
+           .done(function(raw_data){
+            $("#alice").html(raw_data.user + " has " + raw_data.nowCoins + " NowCoins")
+           })
+           $.ajax({
+            url : "http://127.0.0.1:5000/api/state/Bob",
+            crossDomain: true,
+            type: 'GET',
+            dataType: 'json'
+           })
+           .done(function(raw_data){
+            $("#bob").html(raw_data.user + " has " + raw_data.nowCoins + " NowCoins")
+           })
+           $.ajax({
+            url : "http://127.0.0.1:5000/api/state/Charlie",
+            crossDomain: true,
+            type: 'GET',
+            dataType: 'json'
+           })
+           .done(function(raw_data){
+            $("#charlie").html(raw_data.user + " has " + raw_data.nowCoins + " NowCoins")
+           })
+    });
+    </script>
 
   </body>
 

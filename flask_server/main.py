@@ -43,14 +43,14 @@ def get_latest_state():
 def get_individual_state(user):
     state = read_data("resources/state.pkl")
 
-    if user not in state.keys() or user == "Sky": 
+    if user not in state.keys() or user == "Sky":
         return json.dumps({
-            "user": None, 
+            "user": None,
             "nowCoins" : 0
         })
 
     return json.dumps({
-        "user": user, 
+        "user": user,
         "nowCoins" : state[user]
     })
 
@@ -74,7 +74,7 @@ def add_new_transaction():
 
     chain = read_data("resources/chain.pkl")
     updated_state, updated_chain = add_transaction_to_block_chain(new_txn, state, chain)
-    
+
     save_data(updated_chain, "chain.pkl")
     save_data(updated_state, "state.pkl")
 
@@ -82,3 +82,11 @@ def add_new_transaction():
 
 def create_transaction(name, cost):
     return {u'{}'.format(name): cost * -1, u'Sky': cost}
+
+# runs app when called
+def apprun():
+    app.run(host='0.0.0.0',threaded=True, debug=True)
+
+# runs the flask web app
+if __name__ == '__main__':
+    apprun()
