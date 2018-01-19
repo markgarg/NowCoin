@@ -82,6 +82,12 @@ def main():
 
     print("Is it possible for {u'Alice': -3, u'Bob': 1, u'Alan': 2}:  " , isValidTxn({u'Alice': -3, u'Bob': 1, u'Alan': 2},state))  # Basic transaction- this works great!
 
+    # Save chain 
+
+    import pickle 
+    with open("resources/chain.pkl", 'wb') as file:
+        pickle.dump(chain, file)
+
 
 if __name__ == '__main__':
     main()
