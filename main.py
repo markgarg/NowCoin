@@ -59,8 +59,13 @@ def main():
         chain.append(myBlock)        
 
 
-    pprint("0th Element of Chain: {}".format(chain[0]))
-    pprint("1th Element of Chain: {}".format(chain[1]))
+    pprint("0th Element of Chain: \n {}".format(chain[0]))
+    pprint("1th Element of Chain: \n {}".format(chain[1]))
+
+    print("State {} : \n".format(state))
+
+    print("Is it possible for {u'Alice': -3, u'Bob': 3}:  " , isValidTxn({u'Alice': -3, u'Bob': 3},state))  # Basic transaction- this works great!
+    print("Is it possible for {u'Alice': 3, u'Bob': -3}:  " , isValidTxn({u'Alice': 3, u'Bob': -3},state))  # Basic transaction- this works great!
 
 
 if __name__ == '__main__':
