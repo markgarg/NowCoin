@@ -11,6 +11,10 @@ from flask import (
 import pickle
 import json
 
+from functions import (
+    read_data,
+    add_transaction_to_block_chain,
+)
 app = Flask(__name__)
 
 @app.route("/",  methods=['GET'])
@@ -25,7 +29,19 @@ def not_found(error):
 @app.route("/api/blockchain",  methods=['GET'])
 def get_block_chain():
 
-    with open('resources/chain.pkl', 'rb') as file:
-        contents = pickle.load(file)
+    chain = read_data("resources/chain.pkl")
+    return json.dumps({"BlockChain": chain})
 
-    return json.dumps({"content": contents})
+@app.route("/api/newTransaction",  methods=['POST'])
+def add_new_transaction():
+
+    tkn = {u'Alice': -10, u'Sky': 10}
+
+    state = read_data("resources/state.pkl")
+    chain = read_data("resources/chain.pkl")
+
+    response = add_transaction_to_block_chain(tkn, state, chain)
+
+    if not response: 
+        return "Failed"
+    get_block_chain()
