@@ -15,7 +15,9 @@ from functions import (
     read_data,
     save_data,
     add_transaction_to_block_chain,
-    isValidTxn
+    isValidTxn,
+    create_transaction,
+    updateState
 )
 app = Flask(__name__)
 
@@ -56,13 +58,15 @@ def get_block_chain():
 
 @app.route("/api/newTransaction",  methods=['POST'])
 def add_new_transaction():
+
     if not request.json:
         abort(400)
     data = request.get_json()
 
     state = read_data("resources/state.pkl")
-    new_txn = create_transaction(data['name'], data['cost'])
+    new_txn = create_transaction(state, data['name'], data['cost'])
 
+    state = updateState(new_txn, state)
     if not isValidTxn(new_txn, state):
         return "Failed"
 
@@ -74,5 +78,3 @@ def add_new_transaction():
 
     return json.dumps({"BLockChain": chain})
 
-def create_transaction(name, cost):
-    return {u'{}'.format(name): cost * -1, u'Sky': cost}
