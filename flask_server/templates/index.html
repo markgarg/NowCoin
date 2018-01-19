@@ -95,7 +95,7 @@
         $.ajax({
             url:'/api/newTransaction',
             type:"POST",
-            data:{ name: "Alice", cost: "8"},
+            data: JSON.stringify({ "name": "Alice", "cost": "8"}),
             contentType:"application/json; charset=utf-8",
             dataType:"json",
             success: function(){
