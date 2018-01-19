@@ -15,6 +15,13 @@ def index():
     resp = make_response(render_template('index.html'), 200)
     return resp
 
+
+@app.route("/users",  methods=['GET'])
+def users():
+    resp = make_response(render_template('users.html'), 200)
+    return resp
+
+
 # runs app when called
 def apprun():
     app.run(host='0.0.0.0', threaded=True, debug=True)
