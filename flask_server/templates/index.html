@@ -61,7 +61,7 @@
             <img src="static/got.png" width="270px" height="350px">
             <hr>
               <button type="submit" name="cost" id="buy_coins_8" class="btn btn-light" value={{8}}>Buy - 8 NowCoins</button>
-              <button type="submit" name="cost" class="btn btn-light" value={{10}}>Buy without Ads - 10 NowCoins</button>
+              <button type="submit" name="cost" id="buy_coins_10" class="btn btn-light" value={{10}}>Buy without Ads - 10 NowCoins</button>
             </center>
           </div>
 
@@ -69,8 +69,8 @@
             <center>
             <img src="static/friends.jpeg" width="270px" height="350px">
             <hr>
-              <button type="submit" name="cost" class="btn btn-light" value={{4}}>Buy - 4 NowCoins</button>
-              <button type="submit" name="cost" class="btn btn-light" value={{6}}>Buy without Ads - 6 NowCoins</button>
+              <button type="submit" name="cost" id="buy_coins_4" class="btn btn-light" value={{4}}>Buy - 4 NowCoins</button>
+              <button type="submit" name="cost" id="buy_coins_6" class="btn btn-light" value={{6}}>Buy without Ads - 6 NowCoins</button>
             </center>
           </div>
 
@@ -79,8 +79,8 @@
             <center>
             <img src="static/horror.jpg" width="270px" height="350px">
             <hr>
-              <button type="submit" name="cost" class="btn btn-light" value={{4}}>Watch and get 4 NowCoins</button>
-              <button type="submit" name="cost" class="btn btn-light" value={{8}}>Watch with Ads and get 8 NowCoins</button>
+              <button type="submit" name="cost" id="buy_coins_4_2" class="btn btn-light" value={{4}}>Watch and get 4 NowCoins</button>
+              <button type="submit" name="cost" id="buy_coins_8_2" class="btn btn-light" value={{8}}>Watch with Ads and get 8 NowCoins</button>
             </center>
           </div>
 
@@ -95,7 +95,67 @@
         $.ajax({
             url:'/api/newTransaction',
             type:"POST",
-            data: JSON.stringify({ "name": "Alice", "cost": "8"}),
+            data: JSON.stringify({ "name": "Alice", "cost": 8}),
+            contentType:"application/json; charset=utf-8",
+            dataType:"json",
+            success: function(){
+            }
+        });
+    })
+
+    $('#buy_coins_10').click(function(){
+        $.ajax({
+            url:'/api/newTransaction',
+            type:"POST",
+            data: JSON.stringify({ "name": "Alice", "cost": 10}),
+            contentType:"application/json; charset=utf-8",
+            dataType:"json",
+            success: function(){
+            }
+        });
+    })
+
+    $('#buy_coins_4').click(function(){
+        $.ajax({
+            url:'/api/newTransaction',
+            type:"POST",
+            data: JSON.stringify({ "name": "Alice", "cost": 4}),
+            contentType:"application/json; charset=utf-8",
+            dataType:"json",
+            success: function(){
+            }
+        });
+    })
+
+    $('#buy_coins_6').click(function(){
+        $.ajax({
+            url:'/api/newTransaction',
+            type:"POST",
+            data: JSON.stringify({ "name": "Alice", "cost": 6}),
+            contentType:"application/json; charset=utf-8",
+            dataType:"json",
+            success: function(){
+            }
+        });
+    })
+
+    $('#buy_coins_4_2').click(function(){
+        $.ajax({
+            url:'/api/newTransaction',
+            type:"POST",
+            data: JSON.stringify({ "name": "Alice", "cost": -4}),
+            contentType:"application/json; charset=utf-8",
+            dataType:"json",
+            success: function(){
+            }
+        });
+    })
+
+    $('#buy_coins_8_2').click(function(){
+        $.ajax({
+            url:'/api/newTransaction',
+            type:"POST",
+            data: JSON.stringify({ "name": "Alice", "cost": -8}),
             contentType:"application/json; charset=utf-8",
             dataType:"json",
             success: function(){

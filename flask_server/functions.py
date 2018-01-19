@@ -35,7 +35,7 @@ def hashMe(msg=""):
 
 def add_transaction_to_block_chain(new_txn, state, chain):
     """Add it to a block chain."""
-    state = updateState(new_txn, state)
+    # state = updateState(new_txn, state)
     new_block = makeBlock([new_txn], chain)
     chain.append(new_block)
 
@@ -65,11 +65,22 @@ def updateState(txn, state):
             state[key] = txn[key]
     return state
 
+def create_transaction(state, name, cost):
+
+    '''Creates new dictionary of transaction from incoming json data'''
+
+    txn = {}
+    txn[u'{}'.format(name)] = cost * -1
+    txn[u'Sky'] = cost
+
+    return txn
+
 def isValidTxn(txn,state):
     # Assume that the transaction is a dictionary keyed by account names
 
     # Check that the sum of the deposits and withdrawals is 0
     if sum(txn.values()) is not 0:
+        print("Values do not add to 0")
         return False
     
     # Check that the transaction does not cause an overdraft
@@ -78,18 +89,22 @@ def isValidTxn(txn,state):
             acctBalance = state[key]
         else:
             acctBalance = 0
-        if (acctBalance + txn[key]) < 0:
+
+        # Ensures the user cannot spend if they do no have enough on their balance
+        if (acctBalance + txn[key]) < 0: 
             return False
     
     return True
 
 
 def save_data(data, file_name):
+    '''Used primarily to save the blockchain and the latest state as pickle files'''
     with open("resources/{0}".format(file_name), 'wb') as file:
         pickle.dump(data, file)
 
 
 def read_data(file_name):
+    '''Used primarily to read the blockchain and latest state pickle files'''
     with open("{0}".format(file_name), 'rb') as file:
         contents = pickle.load(file)
     return contents

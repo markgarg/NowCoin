@@ -16,7 +16,12 @@ from functions import (
 def main():
     txnBuffer = [makeTransaction() for i in range(3)]
 
-    state = {u'Alice': 200, u'Sky': 0}
+    state = {
+        u'Sky': 0,
+        u'Alice': 200,
+        u'Bob': 130,
+        u'Charlie': 40 
+    }
     genesis_block = create_genesis_block(state)
 
     chain = [genesis_block]
