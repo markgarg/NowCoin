@@ -1,5 +1,6 @@
 import sys, hashlib, random
 from pprint import pprint
+import pickle
 
 from functions import (
     isValidTxn,
@@ -30,12 +31,29 @@ def makeBlock(txns,chain):
 
 def add_transaction_to_block_chain(new_txn):
     """Validate incoming transaction and add it to a block chain."""
+    state = read_data("resources/state.pkl")
     if isValidTxn(new_txn, state):
-        new_block = makeBlock(new_txn, chain)
+        state = updateState(new_txn, state)
+        chain = read_data("resources/chain.pkl")
+        new_block = makeBlock([new_txn], chain)
         chain.append(new_block)
+        save_data(chain, "chain.pkl")
+        save_data(state, "state.pkl")
         return True
     else:
         return False
+
+
+def save_data(data, file_name):
+    with open("resources/{0}".format(file_name), 'wb') as file:
+        pickle.dump(data, file)
+
+
+def read_data(file_name):
+    with open("{0}".format(file_name), 'rb') as file:
+        contents = pickle.load(file)
+    return contents
+
 
 def main():
     txnBuffer = [makeTransaction() for i in range(10)]
