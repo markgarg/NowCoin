@@ -24,6 +24,12 @@ def index():
     resp = make_response(render_template('index.html'), 200)
     return resp
 
+@app.route("/users",  methods=['GET'])
+def users():
+    resp = make_response(render_template('users.html'), 200)
+    return resp
+
+
 @app.errorhandler(404)
 def not_found(error):
     return render_template('error.html'), 404

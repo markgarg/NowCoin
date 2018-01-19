@@ -41,7 +41,7 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item active">
-              <a class="nav-link" href="/users">User
+              <a class="nav-link" href="/">Home
                 <span class="sr-only">(current)</span>
               </a>
             </li>
@@ -54,44 +54,47 @@
 
     <!-- Page Content -->
     <div class="container">
-      <form method="post">
-        <div class="row">
+      <div class="row">
 
-          <div class="col-xs-6 col-sm-4">
-            <center>
-            <img src="static/got.png" width="270px" height="350px">
-            <hr>
-              <button type="submit" name="cost" class="btn btn-light" value={{8}}>Buy - 8 NowCoins</button>
-              <button type="submit" name="cost" class="btn btn-light" value={{10}}>Buy without Ads - 10 NowCoins</button>
-            </center>
-          </div>
-
-          <div class="col-xs-6 col-sm-4">
-            <center>
-            <img src="static/friends.jpeg" width="270px" height="350px">
-            <hr>
-              <button type="submit" name="cost" class="btn btn-light" value={{4}}>Buy - 4 NowCoins</button>
-              <button type="submit" name="cost" class="btn btn-light" value={{6}}>Buy without Ads - 6 NowCoins</button>
-            </center>
-          </div>
-
-
-          <div class="col-xs-6 col-sm-4">
-            <center>
-            <img src="static/horror.jpg" width="270px" height="350px">
-            <hr>
-              <button type="submit" name="cost" class="btn btn-light" value={{4}}>Watch and get 4 NowCoins</button>
-              <button type="submit" name="cost" class="btn btn-light" value={{8}}>Watch with Ads and get 8 NowCoins</button>
-            </center>
-          </div>
-
-
+        <div class="col-xs-6 col-sm-4">
+          <center>
+          <img src="static/simpson1.png" width="270px" height="350px">
+          <hr>
+            <p>You have 30 NowCoins</p>
+            <button type="button" class="btn btn-light">Buy more NowCoins</button>
+            <button type="button" class="btn btn-light">Give away NowCoins</button>
+          </center>
         </div>
-      </form>
+
+
+        <div class="col-xs-6 col-sm-4">
+          <center>
+          <img src="static/simpson2.png" width="270px" height="350px">
+          <hr>
+            <p>You have 67 NowCoins</p>
+            <button type="button" class="btn btn-light">Buy more NowCoins</button>
+            <button type="button" class="btn btn-light">Give away NowCoins</button>
+          </center>
+        </div>
+
+
+        <div class="col-xs-6 col-sm-4">
+          <center>
+          <img src="static/simpson3.jpeg" width="270px" height="350px">
+          <hr>
+            <p>You have 0 NowCoins</p>
+            <button type="button" class="btn btn-light">Buy more NowCoins</button>
+            <button type="button" class="btn btn-light">Give away NowCoins</button>
+          </center>
+        </div>
+
+
+      </div>
     </div>
 
     <!-- Bootstrap core JavaScript -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
   </body>
 
