@@ -1,0 +1,7 @@
+body{
+  min-height: 800px;
+  height: 100%;
+}
+.component{
+  height: 800px;
+}

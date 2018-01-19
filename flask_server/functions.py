@@ -1,6 +1,27 @@
 import random
 random.seed(0)
 import hashlib, json, sys
+import pickle
+
+def create_genesis_block(initial_state): 
+    genesisBlockTxns = [initial_state]
+    genesisBlockContents = {u'blockNumber':0,u'parentHash':None,u'txnCount':1,u'txns':genesisBlockTxns}
+    genesisHash = hashMe( genesisBlockContents )
+    return {u'hash':genesisHash,u'contents':genesisBlockContents} # Genesis Block
+
+
+def makeBlock(txns,chain):
+    parentBlock = chain[-1]
+    parentHash  = parentBlock[u'hash']
+    blockNumber = parentBlock[u'contents'][u'blockNumber'] + 1
+    txnCount    = len(txns)
+    blockContents = {u'blockNumber':blockNumber,u'parentHash':parentHash,
+                     u'txnCount':len(txns),'txns':txns}
+    blockHash = hashMe( blockContents )
+    block = {u'hash':blockHash,u'contents':blockContents}
+    
+    return block
+
 
 def hashMe(msg=""):
     # For convenience, this is a helper function that wraps our hashing algorithm
@@ -12,16 +33,22 @@ def hashMe(msg=""):
     else:
         return hashlib.sha256(str(msg).encode('utf-8')).hexdigest()
 
+def add_transaction_to_block_chain(new_txn, state, chain):
+    """Add it to a block chain."""
+    state = updateState(new_txn, state)
+    new_block = makeBlock([new_txn], chain)
+    chain.append(new_block)
 
-def makeTransaction(maxValue=3):
+    return state, chain
+
+def makeTransaction(maxValue=40):
     # This will create valid transactions in the range of (1,maxValue)
-    sign      = int(random.getrandbits(1))*2 - 1   # This will randomly choose -1 or 1
-    amount    = random.randint(1,maxValue)
-    alicePays = sign * amount
-    bobPays   = -1 * alicePays
+    amount    = random.randint(1, maxValue)
+    alicePays = -1 * amount
+    skyPays   = -1 * alicePays
     # By construction, this will always return transactions that respect the conservation of tokens.
     # However, note that we have not done anything to check whether these overdraft an account
-    return {u'Alice':alicePays,u'Bob':bobPays}
+    return {u'Alice': alicePays,u'Sky':skyPays}
 
 
 def updateState(txn, state):
@@ -55,3 +82,14 @@ def isValidTxn(txn,state):
             return False
     
     return True
+
+
+def save_data(data, file_name):
+    with open("resources/{0}".format(file_name), 'wb') as file:
+        pickle.dump(data, file)
+
+
+def read_data(file_name):
+    with open("{0}".format(file_name), 'rb') as file:
+        contents = pickle.load(file)
+    return contents
