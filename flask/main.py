@@ -10,9 +10,12 @@ from flask import (
 )
 app = Flask(__name__)
 
-@app.route("/",  methods=['GET'])
+@app.route("/",  methods=['GET','POST'])
 def index():
     resp = make_response(render_template('index.html'), 200)
+    if request.method == 'POST':
+        cost = request.form['cost']
+        print(cost)
     return resp
 
 # runs app when called

@@ -54,44 +54,44 @@
 
     <!-- Page Content -->
     <div class="container">
-      <div class="row">
+      <form method="post">
+        <div class="row">
 
-        <div class="col-xs-6 col-sm-4">
-          <center>
-          <img src="static/got.png" width="270px" height="350px">
-          <hr>
-            <button type="button" class="btn btn-light">Buy - 8 NowCoins</button>
-            <button type="button" class="btn btn-light">Buy without Ads - 10 NowCoins</button>
-          </center>
+          <div class="col-xs-6 col-sm-4">
+            <center>
+            <img src="static/got.png" width="270px" height="350px">
+            <hr>
+              <button type="submit" name="cost" class="btn btn-light" value={{8}}>Buy - 8 NowCoins</button>
+              <button type="submit" name="cost" class="btn btn-light" value={{10}}>Buy without Ads - 10 NowCoins</button>
+            </center>
+          </div>
+
+          <div class="col-xs-6 col-sm-4">
+            <center>
+            <img src="static/friends.jpeg" width="270px" height="350px">
+            <hr>
+              <button type="submit" name="cost" class="btn btn-light" value={{4}}>Buy - 4 NowCoins</button>
+              <button type="submit" name="cost" class="btn btn-light" value={{6}}>Buy without Ads - 6 NowCoins</button>
+            </center>
+          </div>
+
+
+          <div class="col-xs-6 col-sm-4">
+            <center>
+            <img src="static/horror.jpg" width="270px" height="350px">
+            <hr>
+              <button type="submit" name="cost" class="btn btn-light" value={{4}}>Watch and get 4 NowCoins</button>
+              <button type="submit" name="cost" class="btn btn-light" value={{8}}>Watch with Ads and get 8 NowCoins</button>
+            </center>
+          </div>
+
+
         </div>
-
-
-        <div class="col-xs-6 col-sm-4">
-          <center>
-          <img src="static/friends.jpeg" width="270px" height="350px">
-          <hr>
-            <button type="button" class="btn btn-light">Buy - 4 NowCoins</button>
-            <button type="button" class="btn btn-light">Buy without Ads - 6 NowCoins</button>
-          </center>
-        </div>
-
-
-        <div class="col-xs-6 col-sm-4">
-          <center>
-          <img src="static/horror.jpg" width="270px" height="350px">
-          <hr>
-            <button type="button" class="btn btn-light">Watch and get 4 NowCoins</button>
-            <button type="button" class="btn btn-light">Watch with Ads and get 8 NowCoins</button>
-          </center>
-        </div>
-
-
-      </div>
+      </form>
     </div>
 
     <!-- Bootstrap core JavaScript -->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
   </body>
 
