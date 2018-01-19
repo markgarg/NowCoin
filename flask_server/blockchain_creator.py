@@ -17,7 +17,7 @@ def main():
     txnBuffer = [makeTransaction() for i in range(3)]
 
     state = {
-        u'Sky': 0,
+        u'Sky': 100000,
         u'Alice': 200,
         u'Bob': 130,
         u'Charlie': 40 
